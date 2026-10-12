@@ -1,1 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Offers | Curated Access</title>
+    <!-- European Clean Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for modern luxury icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <style>
+        :root {
+            --bg-obsidian: #08090d;
+            --surface-glass: rgba(16, 18, 27, 0.72);
+            --surface-card: rgba(255, 255, 255, 0.028);
+            --surface-card-hover: rgba(255, 255, 255, 0.065);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.22);
+            --text-heading: #f8fafc;
+            --text-body: #94a3b8;
+            --text-muted: #64748b;
+            --accent-gold: #eab308;
+            --accent-emerald: #10b981;
+            --accent-rose: #f43f5e;
+            --glow-gold: rgba(234, 179, 8, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-obsidian);
+            color: var(--text-heading);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .ambient-aurora {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(140px);
+            opacity: 0.35;
+            transition: all 1s ease;
+        }
+
+        .aurora-top {
+            width: 440px;
+            height: 440px;
+            background: radial-gradient(circle, #3b82f6 0%, rgba(59, 130, 246, 0) 70%);
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .aurora-bottom {
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, #8b5cf6 0%, rgba(139, 92, 246, 0) 70%);
+            bottom: -100px;
+            right: 8%;
+        }
+
+        .hub-card {
+            width: 100%;
+            max-width: 470px;
+            background: var(--surface-glass);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            padding: 42px 26px 30px;
+            box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.75), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* Geometric emblem replacing profile picture */
+        .emblem-wrapper {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emblem-aura {
+            position: absolute;
+            inset: -4px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.3), rgba(99, 102, 241, 0.3), rgba(16, 185, 129, 0.3));
+            filter: blur(8px);
+            opacity: 0.75;
+            animation: auraPulse 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes auraPulse {
+            0% { transform: scale(0.96); opacity: 0.5; }
+            100% { transform: scale(1.04); opacity: 0.85; }
+        }
+
+        .emblem-core {
+            position: relative;
+            width: 76px;
+            height: 76px;
+            border-radius: 24px;
+            background: linear-gradient(145deg, #161926, #0d0f18);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+        }
+
+        .emblem-core i {
+            font-size: 28px;
+            background: linear-gradient(135deg, #ffffff 10%, #cbd5e1 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.24);
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent-emerald);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-emerald);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-emerald);
+            animation: blink 2s infinite ease-in-out;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.35; transform: scale(0.8); }
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 27px;
+            font-weight: 700;
+            letter-spacing: -0.6px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 13.5px;
+            color: var(--text-body);
+            font-weight: 400;
+            margin-bottom: 30px;
+            line-height: 1.55;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .links-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .link-row {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px;
+            background: var(--surface-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-heading);
+            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .link-row:hover {
+            transform: translateY(-2px);
+            background: var(--surface-card-hover);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+        }
+
+        .link-row:active {
+            transform: scale(0.985);
+        }
+
+        .left-content {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-align: left;
+            z-index: 1;
+        }
+
+        .icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            transition: all 0.25s ease;
+        }
+
+        .text-meta h2 {
+            font-size: 14.5px;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .text-meta p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
+        .tag-pill {
+            font-size: 10px;
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+
+        .tag-gold {
+            background: rgba(234, 179, 8, 0.16);
+            color: #fde047;
+            border: 1px solid rgba(234, 179, 8, 0.35);
+        }
+
+        .tag-hot {
+            background: rgba(244, 63, 94, 0.16);
+            color: #fda4af;
+            border: 1px solid rgba(244, 63, 94, 0.35);
+        }
+
+        .arrow-nav {
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: transform 0.25s ease, color 0.25s ease;
+            z-index: 1;
+        }
+
+        .link-row:hover .arrow-nav {
+            transform: translateX(4px);
+            color: #ffffff;
+        }
+
+        /* 1. Prime Selection (Gold highlight) */
+        .row-prime {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.09), rgba(255, 255, 255, 0.02));
+            border-color: rgba(234, 179, 8, 0.32);
+            box-shadow: 0 4px 20px rgba(234, 179, 8, 0.06);
+        }
+
+        .row-prime:hover {
+            border-color: rgba(234, 179, 8, 0.55);
+            box-shadow: 0 10px 30px rgba(234, 179, 8, 0.18);
+        }
+
+        .row-prime .icon-box {
+            background: rgba(234, 179, 8, 0.15);
+            border-color: rgba(234, 179, 8, 0.35);
+            color: #fde047;
+        }
+
+        /* 2. Limited Time Access */
+        .row-limited .icon-box {
+            color: #fb7185;
+            background: rgba(244, 63, 94, 0.12);
+            border-color: rgba(244, 63, 94, 0.25);
+        }
+
+        /* 3. Gift Pack */
+        .row-gift .icon-box {
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.12);
+            border-color: rgba(56, 189, 248, 0.25);
+        }
+
+        /* 4. VIP Membership */
+        .row-vip .icon-box {
+            color: #a78bfa;
+            background: rgba(167, 139, 250, 0.12);
+            border-color: rgba(167, 139, 250, 0.25);
+        }
+
+        /* 5. Direct Concierge */
+        .row-concierge .icon-box {
+            color: #34d399;
+            background: rgba(52, 211, 153, 0.12);
+            border-color: rgba(52, 211, 153, 0.25);
+        }
+
+        .hub-footer {
+            margin-top: 30px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+        }
+
+        .hub-footer span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .share-hub {
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .share-hub:hover {
+            color: var(--text-heading);
+        }
+
+        /* Interactive Notification Toast */
+        .toast-notify {
+            position: fixed;
+            bottom: 24px;
+            background: rgba(16, 20, 30, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .toast-notify.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Subtle Ambient Aurora Illumination -->
+    <div class="ambient-aurora aurora-top"></div>
+    <div class="ambient-aurora aurora-bottom"></div>
+
+    <!-- Main Luxury Hub -->
+    <main class="hub-card">
+        
+        <!-- Minimalist Emblem Icon (No personal photo) -->
+        <div class="emblem-wrapper">
+            <div class="emblem-aura"></div>
+            <div class="emblem-core">
+                <i class="fa-solid fa-shapes"></i>
+            </div>
+        </div>
+
+        <!-- Verified Live Status -->
+        <div class="status-badge">
+            <div class="pulse-dot"></div>
+            Verified Deals Active
+        </div>
+
+        <!-- Header Content -->
+        <h1>Exclusive Offers</h1>
+        <p class="subtitle">Select a verified portal below to claim available privileges and limited offers.</p>
+
+        <!-- The 5 Curated Link Cards -->
+        <nav class="links-stack">
+
+            <!-- ==============================================================
+                 [LINK 1 - TOP OFFER]
+                 1. Replace "https://app.trcefy.com/click?pid=2&offer_id=24625&sub2=u811990&sub5=s1SUBID1HERE" with your link
+                 2. Change "Bluereen - iPhone Duo" to your offer title
+                 3. Change "Geben Sie Ihre Daten ein, um das iPhone Duo zu gewinnen!
+" to your details
+            =============================================================== -->
+            <a href="https://app.trcefy.com/click?pid=2&offer_id=24625&sub2=u811990&sub5=s1SUBID1HERE" target="_blank" rel="noopener noreferrer" class="link-row row-prime">
+                <div class="left-content">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <div class="text-meta">
+                        <h2>Bluereen - iPhone Duo <span class="tag-pill tag-gold">TOP</span></h2>
+                        <p>Geben Sie Ihre Daten ein, um das iPhone Duo zu gewinnen!
+</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow-nav"></i>
+            </a>
+
+            <!-- ==============================================================
+                 [LINK 2 - HOT DEAL]
+                 1. Replace "https://app.trcefy.com/click?pid=2&offer_id=19278&sub2=u811990&sub5=s1SUBID1HERE" with your link
+                 2. Change "BlueReen - €500 Armour Voucher" to your offer title
+                 3. Change "Geben Sie Ihre E-Mail-Adresse ein und erhalten Sie einen Armour Voucher im Wert von &euro;500!" to your details
+            =============================================================== -->
+            <a href="https://app.trcefy.com/click?pid=2&offer_id=19278&sub2=u811990&sub5=s1SUBID1HERE" target="_blank" rel="noopener noreferrer" class="link-row row-limited">
+                <div class="left-content">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <div class="text-meta">
+                        <h2>BlueReen - €500 Armour Voucher <span class="tag-pill tag-hot">HOT</span></h2>
+                        <p>Geben Sie Ihre E-Mail-Adresse ein und erhalten Sie einen Armour Voucher im Wert von &euro;500!</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow-nav"></i>
+            </a>
+
+            <!-- ==============================================================
+                 [LINK 3]
+                 1. Replace "https://app.trcefy.com/click?pid=2&offer_id=19133&sub2=u811990&sub5=s1SUBID1HERE" with your link
+                 2. Change "BlueReen - Win a Tattoo" to your offer title
+                 3. Change "Geben Sie Ihre Daten ein, um ein neues Tattoo zu bekommen!
+" to your details
+            =============================================================== -->
+            <a href="https://app.trcefy.com/click?pid=2&offer_id=19133&sub2=u811990&sub5=s1SUBID1HERE" target="_blank" rel="noopener noreferrer" class="link-row row-gift">
+                <div class="left-content">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-gift"></i>
+                    </div>
+                    <div class="text-meta">
+                        <h2>BlueReen - Win a Tattoo</h2>
+                        <p>Geben Sie Ihre Daten ein, um ein neues Tattoo zu bekommen!
+</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow-nav"></i>
+            </a>
+
+            <!-- ==============================================================
+                 [LINK 4 - VIP ENTRY]
+                 1. Replace "https://app.trcefy.com/click?pid=2&offer_id=19137&sub2=u811990&sub5=s1SUBID1HERE" with your link
+                 2. Change "BlueReen - Win a 250€ Edeka Voucher" to your offer title
+                 3. Change "Sichern Sie sich die Chance auf einen Edeka-Gutschein im Wert von &euro;250!
+" to your details
+            =============================================================== -->
+            <a href="https://app.trcefy.com/click?pid=2&offer_id=19137&sub2=u811990&sub5=s1SUBID1HERE" target="_blank" rel="noopener noreferrer" class="link-row row-vip">
+                <div class="left-content">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="text-meta">
+                        <h2>BlueReen - Win a 250€ Edeka Voucher</h2>
+                        <p>Sichern Sie sich die Chance auf einen Edeka-Gutschein im Wert von &euro;250!
+</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow-nav"></i>
+            </a>
+
+            <!-- ==============================================================
+                 [LINK 5 - SUPPORT / INQUIRIES]
+                 1. Replace "PASTE_YOUR_LINK_HERE_5" with your link
+                 2. Change "EDIT YOUR OFFER NAME HERE 5" to your offer title
+                 3. Change "EDIT YOUR OFFER DESCRIPTION HERE 5" to your details
+            =============================================================== -->
+            <a href="PASTE_YOUR_LINK_HERE_5" target="_blank" rel="noopener noreferrer" class="link-row row-concierge">
+                <div class="left-content">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="text-meta">
+                        <h2>EDIT YOUR OFFER NAME HERE 5</h2>
+                        <p>EDIT YOUR OFFER DESCRIPTION HERE 5</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow-nav"></i>
+            </a>
+
+        </nav>
+
+        <footer class="hub-footer">
+            <span>
+                <i class="fa-solid fa-lock" style="color: #10b981;"></i> 
+                256-bit Secure Gateway
+            </span>
+            <span class="share-hub" onclick="copyHubUrl()" title="Click to copy link">
+                <i class="fa-regular fa-clone"></i> © 2026 Exclusive Offers
+            </span>
+        </footer>
+
+    </main>
+
+    <!-- Feedback Toast -->
+    <div id="toast" class="toast-notify">
+        <i class="fa-solid fa-check" style="color: #10b981;"></i> Link copied to clipboard
+    </div>
+
+    <script>
+        function copyHubUrl() {
+            var temp = document.createElement("input");
+            document.body.appendChild(temp);
+            temp.value = window.location.href;
+            temp.select();
+            document.execCommand("copy");
+            document.body.removeChild(temp);
+
+            var toast = document.getElementById("toast");
+            toast.classList.add("visible");
+            setTimeout(function() {
+                toast.classList.remove("visible");
+            }, 2400);
+        }
+    </script>
+</body>
+</html>
